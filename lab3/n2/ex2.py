@@ -1,5 +1,16 @@
+from pathlib import Path
+
+_LAB_DIR = Path(__file__).resolve().parent.parent
+_TASK_DIR = Path(__file__).resolve().parent
+
+
+def _path(rel_path: str) -> Path:
+    if "/" in rel_path or "\\" in rel_path:
+        return _LAB_DIR / rel_path
+    return _TASK_DIR / rel_path
+
 def main():
-    with open("n2/input.txt", "r", encoding="utf-8") as f:
+    with open(_path("n2/input.txt"), "r", encoding="utf-8") as f:
         n = int(f.readline().strip())
 
     a = list(range(1, n + 1))
@@ -8,7 +19,7 @@ def main():
         j = i // 2
         a[i], a[j] = a[j], a[i]
 
-    with open("n2/output.txt", "w", encoding="utf-8") as out:
+    with open(_path("n2/output.txt"), "w", encoding="utf-8") as out:
         chunk = 20000
         first = True
         for start in range(0, n, chunk):

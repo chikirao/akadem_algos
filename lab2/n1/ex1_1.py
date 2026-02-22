@@ -1,3 +1,14 @@
+from pathlib import Path
+
+_LAB_DIR = Path(__file__).resolve().parent.parent
+_TASK_DIR = Path(__file__).resolve().parent
+
+
+def _path(rel_path: str) -> Path:
+    if "/" in rel_path or "\\" in rel_path:
+        return _LAB_DIR / rel_path
+    return _TASK_DIR / rel_path
+
 INF = 10**19
 
 def merge(A, left, mid, right):
@@ -35,11 +46,11 @@ def merge_sort(A, left, right):
         merge(A, left, mid, right)
 
 
-with open("n1/input_worst.txt", "r", encoding="utf-8") as f:
+with open(_path("n1/input_worst.txt"), "r", encoding="utf-8") as f:
     n = int(f.readline())
     A = list(map(int, f.readline().split()))
 
 merge_sort(A, 0, n - 1)
 
-with open("n1/output.txt", "w", encoding="utf-8") as f:
+with open(_path("n1/output.txt"), "w", encoding="utf-8") as f:
     f.write(" ".join(map(str, A)))

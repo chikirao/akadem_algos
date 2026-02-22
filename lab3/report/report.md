@@ -185,7 +185,7 @@ if __name__ == "__main__":
 
 Скриншот проверки на acmp (Accepted, время и память в пределах лимитов):
 
-![Задание 2 - acmp Accepted](img/Screenshot%20from%202026-02-22%2003-35-39.png)
+![Задание 2 - acmp Accepted](img/lab3_1.png)
 
 ---
 

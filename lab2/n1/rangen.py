@@ -1,9 +1,20 @@
+from pathlib import Path
+
+_LAB_DIR = Path(__file__).resolve().parent.parent
+_TASK_DIR = Path(__file__).resolve().parent
+
+
+def _path(rel_path: str) -> Path:
+    if "/" in rel_path or "\\" in rel_path:
+        return _LAB_DIR / rel_path
+    return _TASK_DIR / rel_path
+
 import random
 
 random.seed("chikirao")
 
 def write_case(filename, a):
-    with open(filename, "w", encoding="utf-8") as f:
+    with open(_path(filename), "w", encoding="utf-8") as f:
         f.write(str(len(a)) + "\n")
         f.write(" ".join(map(str, a)) + "\n")
 

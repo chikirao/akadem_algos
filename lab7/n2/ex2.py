@@ -1,8 +1,19 @@
+from pathlib import Path
+
+_LAB_DIR = Path(__file__).resolve().parent.parent
+_TASK_DIR = Path(__file__).resolve().parent
+
+
+def _path(rel_path: str) -> Path:
+    if "/" in rel_path or "\\" in rel_path:
+        return _LAB_DIR / rel_path
+    return _TASK_DIR / rel_path
+
 from array import array
 
 
 def main():
-    with open("n2/input.txt", "rb") as f:
+    with open(_path("n2/input.txt"), "rb") as f:
         data = f.read().split()
 
     n = int(data[0])
@@ -40,7 +51,7 @@ def main():
     seq.reverse()
 
     out = [str(len(seq) - 1), " ".join(map(str, seq))]
-    with open("n2/output.txt", "w", encoding="utf-8") as f:
+    with open(_path("n2/output.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(out))
 
 

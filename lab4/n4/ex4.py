@@ -1,7 +1,18 @@
+from pathlib import Path
+
+_LAB_DIR = Path(__file__).resolve().parent.parent
+_TASK_DIR = Path(__file__).resolve().parent
+
+
+def _path(rel_path: str) -> Path:
+    if "/" in rel_path or "\\" in rel_path:
+        return _LAB_DIR / rel_path
+    return _TASK_DIR / rel_path
+
 SERVICE = 10 # минут на одного
 
 def main():
-    with open("n4/input.txt", "r", encoding="utf-8") as f:
+    with open(_path("n4/input.txt"), "r", encoding="utf-8") as f:
         n = int(f.readline())
         customers = []
         for _ in range(n):
@@ -37,7 +48,7 @@ def main():
 
         out_lines.append(f"{leave // 60} {leave % 60}\n")
 
-    with open("n4/output.txt", "w", encoding="utf-8") as out:
+    with open(_path("n4/output.txt"), "w", encoding="utf-8") as out:
         out.write("".join(out_lines))
 
 

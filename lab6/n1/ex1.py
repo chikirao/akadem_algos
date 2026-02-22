@@ -1,3 +1,14 @@
+from pathlib import Path
+
+_LAB_DIR = Path(__file__).resolve().parent.parent
+_TASK_DIR = Path(__file__).resolve().parent
+
+
+def _path(rel_path: str) -> Path:
+    if "/" in rel_path or "\\" in rel_path:
+        return _LAB_DIR / rel_path
+    return _TASK_DIR / rel_path
+
 class HashSetOA:
     _EMPTY = None
 
@@ -56,7 +67,7 @@ class HashSetOA:
 
 
 def main():
-    with open("n1/input.txt", "rb") as f:
+    with open(_path("n1/input.txt"), "rb") as f:
         data = f.read().split()
 
     n = int(data[0])
@@ -82,7 +93,7 @@ def main():
         else: # "?"
             out.append("Y" if hs.contains(x) else "N")
 
-    with open("n1/output.txt", "w", encoding="utf-8") as f:
+    with open(_path("n1/output.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(out))
 
 

@@ -1,3 +1,14 @@
+from pathlib import Path
+
+_LAB_DIR = Path(__file__).resolve().parent.parent
+_TASK_DIR = Path(__file__).resolve().parent
+
+
+def _path(rel_path: str) -> Path:
+    if "/" in rel_path or "\\" in rel_path:
+        return _LAB_DIR / rel_path
+    return _TASK_DIR / rel_path
+
 import time
 import tracemalloc
 
@@ -24,14 +35,14 @@ def bytes_to_mb(b):
 
 
 if __name__ == "__main__":
-    with open("n3/input.txt", "r", encoding="utf-8") as f:
+    with open(_path("n3/input.txt"), "r", encoding="utf-8") as f:
         n = int(f.readline())
         a = list(map(int, f.readline().split()))
 
     tracemalloc.start()
     t0 = time.perf_counter()
 
-    with open("n3/output.txt", "w", encoding="utf-8") as out:
+    with open(_path("n3/output.txt"), "w", encoding="utf-8") as out:
         secretary_swap_sort_with_log(a, n, out)
 
         t1 = time.perf_counter()

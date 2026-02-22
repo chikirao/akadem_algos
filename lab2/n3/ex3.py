@@ -1,3 +1,14 @@
+from pathlib import Path
+
+_LAB_DIR = Path(__file__).resolve().parent.parent
+_TASK_DIR = Path(__file__).resolve().parent
+
+
+def _path(rel_path: str) -> Path:
+    if "/" in rel_path or "\\" in rel_path:
+        return _LAB_DIR / rel_path
+    return _TASK_DIR / rel_path
+
 def find_max_crossing_subarray(A, low, mid, high):
 
     left_sum = -10**30
@@ -39,11 +50,11 @@ def find_maximum_subarray(A, low, high):
         return cross_low, cross_high, cross_sum
 
 
-with open("n3/input.txt", "r", encoding="utf-8") as f:
+with open(_path("n3/input.txt"), "r", encoding="utf-8") as f:
     n = int(f.readline())
     A = list(map(int, f.readline().split()))
 
 _, _, ans = find_maximum_subarray(A, 0, n - 1)
 
-with open("n3/output.txt", "w", encoding="utf-8") as f:
+with open(_path("n3/output.txt"), "w", encoding="utf-8") as f:
     f.write(str(ans))

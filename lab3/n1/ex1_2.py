@@ -1,3 +1,14 @@
+from pathlib import Path
+
+_LAB_DIR = Path(__file__).resolve().parent.parent
+_TASK_DIR = Path(__file__).resolve().parent
+
+
+def _path(rel_path: str) -> Path:
+    if "/" in rel_path or "\\" in rel_path:
+        return _LAB_DIR / rel_path
+    return _TASK_DIR / rel_path
+
 import random
 import sys
 
@@ -35,13 +46,13 @@ def randomized_quicksort3(a, l, r):
         randomized_quicksort3(a, m2 + 1, r)
 
 def main():
-    with open("n1/input_worst.txt", "r", encoding="utf-8") as f:
+    with open(_path("n1/input_worst.txt"), "r", encoding="utf-8") as f:
         n = int(f.readline())
         a = list(map(int, f.readline().split()))
 
     randomized_quicksort3(a, 0, n - 1)
 
-    with open("n1/output2_worst.txt", "w", encoding="utf-8") as f:
+    with open(_path("n1/output2_worst.txt"), "w", encoding="utf-8") as f:
         f.write(" ".join(map(str, a)))
 
 if __name__ == "__main__":
